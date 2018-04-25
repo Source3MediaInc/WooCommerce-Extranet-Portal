@@ -57,7 +57,7 @@ function portal_theme_support()
 
     include('customizer.php');
 
-    require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+    require_once get_template_directory() . '/lib/class-wp-bootstrap-navwalker.php';
 
     include_once get_template_directory() . '/woocommerce/woo-functions.php';
 
