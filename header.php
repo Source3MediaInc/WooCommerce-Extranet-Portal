@@ -18,23 +18,10 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <?php
-        wp_nav_menu( array(
-        	'theme_location'  => 'primary',
-        	'depth'	          => 2, // 1 = no dropdowns, 2 = with dropdowns.
-        	'container'       => null,
-        	'menu_class'      => 'navbar-nav mr-auto',
-        	'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
-        	'walker'          => new WP_Bootstrap_Navwalker(),
-        ) );
-        ?>
+        <?php global_menu('primary','navbar-nav mr-auto'); ?>
         <ul class="navbar-nav ml-auto">
           <li>
-            <?php $count = WC()->cart->cart_contents_count; ?>
-            <a href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>">
-              <i class="shopping-cart"></i>
-              <span style="display: inline-block;"><?php echo esc_html( $count ); ?></span>
-            </a>
+            <?php portal_cart_link(); ?>
           </li>
         </ul>
       </div>

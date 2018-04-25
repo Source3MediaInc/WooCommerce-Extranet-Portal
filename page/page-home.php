@@ -37,21 +37,7 @@ get_header();
 <div class="pt-slim-container pt-shop">
   <h2 class="text-center">Our Products</h2>
   <div class="row">
-    <?php
-
-        $args = array(
-            'post_type'      => 'product'
-        );
-
-        $loop = new WP_Query( $args );
-
-        if($loop->have_posts()):while ( $loop->have_posts() ) : $loop->the_post();
-            global $product;
-            echo '<div class="col-md-3 product"><a href="'.get_permalink().'"><img class="img-responsive" src="' . get_the_post_thumbnail_url( $post->ID) .'"  /><br /><h3 class="text-center">' . get_the_title() . '</h3></a></div>';
-        endwhile;endif;
-
-        wp_reset_query();
-    ?>
+    <?php product_query();?>
   </div>
 </div>
 

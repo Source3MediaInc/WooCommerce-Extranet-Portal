@@ -3,8 +3,8 @@ function portal_theme_styles()
 {
     wp_enqueue_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', array(), '4.0.0', 'all');
     wp_enqueue_style('fontawesome', 'https://use.fontawesome.com/releases/v5.0.10/css/all.css', array(), '5.0.10', 'all');
-    wp_enqueue_style('style', get_stylesheet_uri(), array(), '0.00.00.51', 'all');
-    wp_enqueue_style('woocommerce', get_template_directory_uri() . '/woocommerce.css', array(), '0.00.00.25', 'all');
+    wp_enqueue_style('style', get_stylesheet_uri(), array(), '0.00.00.52', 'all');
+    wp_enqueue_style('woocommerce', get_template_directory_uri() . '/woocommerce.css', array(), '0.00.00.28', 'all');
 }
 add_action('wp_enqueue_scripts', 'portal_theme_styles');
 function portal_theme_scripts()
@@ -13,7 +13,7 @@ function portal_theme_scripts()
     wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), null, false);
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js', array('jquery'), '4.0.0', false);
     wp_deregister_script( 'wc-single-product' );
-    wp_enqueue_script('wc-single-product', get_template_directory_uri() . '/lib/js/single-product.js', array('jquery'), '0.0.2', false);
+    wp_enqueue_script('wc-single-product', get_template_directory_uri() . '/lib/js/single-product.js', array('jquery'), '0.0.3', false);
 }
 add_action('wp_enqueue_scripts', 'portal_theme_scripts');
 
@@ -227,6 +227,15 @@ function my_header_add_to_cart_fragment( $fragments ) {
 }
 add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
 
-
+function global_menu($location,$class){
+  wp_nav_menu( array(
+    'theme_location'  => $location,//primary
+    'depth'	          => 2, // 1 = no dropdowns, 2 = with dropdowns.
+    'container'       => null,
+    'menu_class'      => $class,//navbar-nav mr-auto
+    'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+    'walker'          => new WP_Bootstrap_Navwalker(),
+  ) );
+}
 
 ?>

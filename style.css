@@ -135,31 +135,7 @@ Do not edit, redistribute or otherwise user/change this theme without written co
   background-color: #f3f3f3;
 }
 
-.cart-contents:before {
-  font-family: WooCommerce;
-  content: "\e01d";
-  font-size: 28px;
-  margin-top: 10px;
-  font-style: normal;
-  font-weight: 400;
-  padding-right: 5px;
-  vertical-align: bottom;
-}
 
-.cart-contents:hover {
-  text-decoration: none;
-}
-
-.cart-contents-count {
-  color: #fff;
-  background-color: #2ecc71;
-  font-weight: bold;
-  border-radius: 10px;
-  padding: 1px 6px;
-  line-height: 1;
-  font-family: Arial, Helvetica, sans-serif;
-  vertical-align: top;
-}
 .container-slim{
   padding: 5% 15%;
 }
