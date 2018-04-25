@@ -1,0 +1,171 @@
+/*
+Theme Name: Source3Media Ordering Extranet Core
+Theme URI: https://www.s3morder.com/
+Author: Source3Media
+Author URI: http://www.Source3Media.com/
+Description: Complex, professional wordpress theme made to show work, sell goods and advertise services & experience. Utilizing some of the newest technologies available for wordpress, our theme works great in many languages, for any abilities, and on any device.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: order-intranet
+Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Do not edit, redistribute or otherwise user/change this theme without written consent from I, Spencer Phillips, failure to abide by these rules can be pursued in a court of law and be fined up to $25,000.
+*/
+
+/* Core Styles */
+
+.btn-custom, .btn-custom-border {
+  cursor: default;
+  min-width: 115px;
+  min-height: 35px;
+}
+
+.btn-custom-border {
+  border: 2px solid;
+  background: transparent;
+}
+
+.container-fluid, .container-fluid.pt-container, .pt-container {
+  width: 100%;
+  padding: 0;
+}
+
+.container, .container.pt-slim-container, .pt-slim-container {
+  width: 90%;
+  margin: 0 5%;
+}
+
+.pt-hero {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@media screen and (min-width: 300px) {
+  .img-hero {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin-bottom: 5%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .img-hero {
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 5%;
+  }
+}
+
+.pt-details {
+  padding: 5% 15%;
+  text-align: center;
+}
+
+.pt-details h2 {
+  letter-spacing: 4px;
+}
+
+.pt-cta {
+  padding: 2% 20%;
+  text-align: center;
+}
+
+.pt-cta h2 {
+  letter-spacing: 4px;
+}
+
+.pt-shop {
+  padding: 2% 15%
+}
+
+.pt-shop h2 {
+  padding-bottom: 5%;
+}
+
+.pt-shop .col-md-4.product h3 {
+  max-width: 100%;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.shopping-cart {
+  display: block;
+  text-indent: -9999px;
+  max-width: 60px;
+  min-height: 23px;
+  background-image: url('//s3morder.com/wp-content/themes/Intranet%20Theme/lib/img/shopping-basked-one.svg');
+  background-size: 38px 23px;
+  min-width: 38px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.pt-single {
+  padding: 5% 10%;
+}
+
+.product_title {
+  text-transform: uppercase;
+}
+
+.tabs.wc-tabs {
+  padding: 0;
+}
+
+.tabs.wc-tabs li {
+  display: inline-block;
+  padding: 1% 4%;
+  list-style: none;
+  background-color: #f3f3f3;
+}
+
+.tabs.wc-tabs li.active {
+  border-bottom: 3px solid #149ad8;
+}
+
+.woocommerce-Tabs-panel {
+  padding: 1% 4%;
+  background-color: #f3f3f3;
+}
+
+.cart-contents:before {
+  font-family: WooCommerce;
+  content: "\e01d";
+  font-size: 28px;
+  margin-top: 10px;
+  font-style: normal;
+  font-weight: 400;
+  padding-right: 5px;
+  vertical-align: bottom;
+}
+
+.cart-contents:hover {
+  text-decoration: none;
+}
+
+.cart-contents-count {
+  color: #fff;
+  background-color: #2ecc71;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 1px 6px;
+  line-height: 1;
+  font-family: Arial, Helvetica, sans-serif;
+  vertical-align: top;
+}
+.container-slim{
+  padding: 5% 15%;
+}
+
+.nav-container{
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}

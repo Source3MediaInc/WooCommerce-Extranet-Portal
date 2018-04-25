@@ -1,0 +1,18 @@
+<nav id="topnav" class="navbar navbar-expand-sm sticky-top bg-white">
+  <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <?php
+      if (!has_custom_logo()) {
+          ?>
+          <a class="navbar-brand mx-auto" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+          <?php
+        }
+
+        else{
+           theme_prefix_the_custom_logo();
+        }
+        ?>
+  </div>
+</nav>
