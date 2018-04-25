@@ -36,9 +36,9 @@ function product_sidebar(){
 // Used in conjunction with https://gist.github.com/woogists/9a16fd2d0c982e780a5de89c30cbbd25
 // Compatible with WooCommerce 3.0+. Thanks to Alex for assisting with an update!
 
-function portal_cart_link() {
+function portal_cart_link($url) {
 	?>
-		<a class="cart-contents" href="/cart/" title="<?php esc_attr_e( 'View your shopping cart', 'portal' ); ?>">
+		<a class="cart-contents" href="<?php echo $url; ?>" title="<?php esc_attr_e( 'View your shopping cart', 'portal' ); ?>">
 			<span class="amount"><?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?></span> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'storefront' ), WC()->cart->get_cart_contents_count() ) );?></span>
 		</a>
 	<?php
