@@ -208,3 +208,8 @@ background-color: #f3f3f3;
     border: 0;
     padding: 2px 5px;
 }
+
+.input-text{
+  min-width: 125px;
+  width: auto;
+}
