@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plain_text, $email );
 
 /* translators: %s: Order ID. */
-echo wp_kses_post( strtoupper( sprintf( __( 'Order number: %s', 'woocommerce' ), $order->get_order_number() ) ) ) . "\n";
+echo wp_kses_post( strtoupper( sprintf( __( 'Order number: %s, $permaslug ), $order->get_order_number() ) ) ) . "\n";
 echo wc_format_datetime( $order->get_date_created() ) . "\n";  // WPCS: XSS ok.
 echo "\n" . wc_get_email_order_items( $order, array( // WPCS: XSS ok.
 	'show_sku'      => $sent_to_admin,
@@ -43,12 +43,12 @@ if ( $totals ) {
 }
 
 if ( $order->get_customer_note() ) {
-	echo esc_html__( 'Note:', 'woocommerce' ) . "\t " . wp_kses_post( wptexturize( $order->get_customer_note() ) ) . "\n";
+	echo esc_html__( 'Note:, $permaslug ) . "\t " . wp_kses_post( wptexturize( $order->get_customer_note() ) ) . "\n";
 }
 
 if ( $sent_to_admin ) {
 	/* translators: %s: Order link. */
-	echo "\n" . sprintf( esc_html__( 'View order: %s', 'woocommerce' ), esc_url( $order->get_edit_order_url() ) ) . "\n";
+	echo "\n" . sprintf( esc_html__( 'View order: %s, $permaslug ), esc_url( $order->get_edit_order_url() ) ) . "\n";
 }
 
 do_action( 'woocommerce_email_after_order_table', $order, $sent_to_admin, $plain_text, $email );

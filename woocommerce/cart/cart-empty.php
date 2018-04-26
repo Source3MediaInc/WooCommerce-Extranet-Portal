@@ -30,7 +30,7 @@ do_action( 'woocommerce_cart_is_empty' );
 if ( wc_get_page_id( ) > 0 ) : ?>
 	<p class="return-to-shop">
 		<a class="btn btn-outline-primary" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( ) ) ); ?>">
-			<?php _e( 'Return To Shop', 'portal' ) ?>
+			<?php _e( 'Return To Shop', $permaslug ) ?>
 		</a>
 	</p>
 <?php endif; ?>

@@ -38,8 +38,8 @@ function product_sidebar(){
 
 function portal_cart_link($url) {
 	?>
-		<a class="cart-contents" href="<?php echo $url; ?>" title="<?php esc_attr_e( 'View your shopping cart', 'portal' ); ?>">
-			<span class="amount"><?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?></span> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'storefront' ), WC()->cart->get_cart_contents_count() ) );?></span>
+		<a class="cart-contents" href="<?php echo $url; ?>" title="<?php esc_attr_e( 'View your shopping cart', $permaslug ); ?>">
+			<span class="cart-contents-count"><?php echo WC()->cart->get_cart_contents_count();?></span>
 		</a>
 	<?php
 }
@@ -47,7 +47,7 @@ function portal_cart_link($url) {
 function product_query() {
 
 	        $args = array(
-	            'post_type'      => 'product'
+	            'post_type' => 'product',
 	        );
 
 	        $loop = new WP_Query( $args );

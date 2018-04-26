@@ -156,6 +156,10 @@ p.price {
   list-style: none;
 }
 
+.related.products{
+  width: 100%;
+  height: auto
+}
 .related .products li img {
   width: 100%;
   height: auto;
@@ -173,7 +177,7 @@ p.price {
 @media screen and (min-width: 1024px) {
   .related .products li {
     display: inline-block;
-    /*width: 23%;*/
+    width: 23%!important;
   }
   .related .products li:not(:nth-child(4n)) {
     margin-right: 2%;

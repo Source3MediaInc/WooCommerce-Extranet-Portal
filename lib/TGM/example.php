@@ -134,13 +134,13 @@ function portal_register_required_plugins() {
 
 		/*
 		'strings'      => array(
-			'page_title'                      => __( 'Install Required Plugins', 'portal' ),
-			'menu_title'                      => __( 'Install Plugins', 'portal' ),
+			'page_title'                      => __( 'Install Required Plugins, $permaslug ),
+			'menu_title'                      => __( 'Install Plugins, $permaslug ),
 			/* translators: %s: plugin name. * /
-			'installing'                      => __( 'Installing Plugin: %s', 'portal' ),
+			'installing'                      => __( 'Installing Plugin: %s, $permaslug ),
 			/* translators: %s: plugin name. * /
-			'updating'                        => __( 'Updating Plugin: %s', 'portal' ),
-			'oops'                            => __( 'Something went wrong with the plugin API.', 'portal' ),
+			'updating'                        => __( 'Updating Plugin: %s, $permaslug ),
+			'oops'                            => __( 'Something went wrong with the plugin API., $permaslug ),
 			'notice_can_install_required'     => _n_noop(
 				/* translators: 1: plugin name(s). * /
 				'This theme requires the following plugin: %1$s.',
@@ -192,18 +192,18 @@ function portal_register_required_plugins() {
 				'Begin activating plugins',
 				'portal'
 			),
-			'return'                          => __( 'Return to Required Plugins Installer', 'portal' ),
-			'plugin_activated'                => __( 'Plugin activated successfully.', 'portal' ),
-			'activated_successfully'          => __( 'The following plugin was activated successfully:', 'portal' ),
+			'return'                          => __( 'Return to Required Plugins Installer, $permaslug ),
+			'plugin_activated'                => __( 'Plugin activated successfully., $permaslug ),
+			'activated_successfully'          => __( 'The following plugin was activated successfully:, $permaslug ),
 			/* translators: 1: plugin name. * /
-			'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'portal' ),
+			'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active., $permaslug ),
 			/* translators: 1: plugin name. * /
-			'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'portal' ),
+			'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin., $permaslug ),
 			/* translators: 1: dashboard link. * /
-			'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'portal' ),
-			'dismiss'                         => __( 'Dismiss this notice', 'portal' ),
-			'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'portal' ),
-			'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'portal' ),
+			'complete'                        => __( 'All plugins installed and activated successfully. %1$s, $permaslug ),
+			'dismiss'                         => __( 'Dismiss this notice, $permaslug ),
+			'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate., $permaslug ),
+			'contact_admin'                   => __( 'Please contact the administrator of this site for help., $permaslug ),
 
 			'nag_type'                        => '', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
 		),

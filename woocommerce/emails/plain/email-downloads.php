@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-echo strtoupper( __( 'Downloads', 'woocommerce' ) ) . "\n\n";
+echo strtoupper( __( 'Downloads, $permaslug ) ) . "\n\n";
 
 foreach ( $downloads as $download ) {
 	foreach ( $columns as $column_id => $column_name ) {
@@ -40,7 +40,7 @@ foreach ( $downloads as $download ) {
 					if ( ! empty( $download['access_expires'] ) ) {
 						echo date_i18n( get_option( 'date_format' ), strtotime( $download['access_expires'] ) );
 					} else {
-						_e( 'Never', 'woocommerce' );
+						_e( 'Never, $permaslug );
 					}
 				break;
 			}

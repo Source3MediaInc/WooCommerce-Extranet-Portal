@@ -28,7 +28,7 @@ switch ( $template ) {
 		break;
 	case 'twentyeleven' :
 		echo '</div>';
-		get_sidebar( );
+		get_sidebar( 'shop' );
 		echo '</div>';
 		break;
 	case 'twentytwelve' :

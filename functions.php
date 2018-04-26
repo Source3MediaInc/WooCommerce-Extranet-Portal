@@ -1,10 +1,12 @@
 <?php
+$permaslug = "portal";
+
 function portal_theme_styles()
 {
     wp_enqueue_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', array(), '4.0.0', 'all');
     wp_enqueue_style('fontawesome', 'https://use.fontawesome.com/releases/v5.0.10/css/all.css', array(), '5.0.10', 'all');
     wp_enqueue_style('style', get_stylesheet_uri(), array(), '0.00.00.52', 'all');
-    wp_enqueue_style('woocommerce', get_template_directory_uri() . '/woocommerce.css', array(), '0.00.00.28', 'all');
+    wp_enqueue_style('woocommerce', get_template_directory_uri() . '/woocommerce.css', array(), '0.00.00.30', 'all');
 }
 add_action('wp_enqueue_scripts', 'portal_theme_styles');
 function portal_theme_scripts()
@@ -144,9 +146,9 @@ add_action('after_setup_theme', 'portal_theme_support');
 function portal_nav_menus()
 {
     register_nav_menus(array(
-        'primary' => __('Primary Menu', 'portal'),
-        'floating' => __('Floating Menu', 'portal'),
-        'footer' => __('Footer Navigation', 'portal')
+        'primary' => __('Primary Menu', $permaslug),
+        'floating' => __('Floating Menu', $permaslug),
+        'footer' => __('Footer Navigation', $permaslug)
     ));
 }
 add_action('after_setup_theme', 'portal_nav_menus');
@@ -195,9 +197,9 @@ function portal_register_required_plugins() {
 function portal_sidebar() {
     register_sidebar(
         array (
-            'name' => __( 'Custom', 'portal' ),
+            'name' => __( 'Custom', $permaslug ),
             'id' => 'sidebar',
-            'description' => __( 'Theme Custom Sidebar', 'portal' ),
+            'description' => __( 'Theme Custom Sidebar', $permaslug ),
             'before_widget' => '<div class="widget-content">',
             'after_widget' => "</div>",
             'before_title' => '<h3 class="widget-title">',
