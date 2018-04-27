@@ -1,5 +1,9 @@
 <?php
-$permaslug = "portal";
+
+
+function permaslug(){
+  $permaslug = "portal";
+}
 
 function portal_theme_styles()
 {
@@ -12,10 +16,13 @@ add_action('wp_enqueue_scripts', 'portal_theme_styles');
 function portal_theme_scripts()
 {
 		wp_deregister_script('jquery');
+    wp_deregister_script('wc-checkout');
     wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), null, false);
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js', array('jquery'), '4.0.0', false);
     wp_deregister_script( 'wc-single-product' );
     wp_enqueue_script('wc-single-product', get_template_directory_uri() . '/lib/js/single-product.js', array('jquery'), '0.0.3', false);
+    wp_enqueue_script('wc-single-product', get_template_directory_uri() . '/lib/js/checkout.min.js', array('jquery'), '0.0.3', false);
+
 }
 add_action('wp_enqueue_scripts', 'portal_theme_scripts');
 
@@ -145,11 +152,11 @@ add_action('after_setup_theme', 'portal_theme_support');
 
 function portal_nav_menus()
 {
-    register_nav_menus(array(
-        'primary' => __('Primary Menu', $permaslug),
-        'floating' => __('Floating Menu', $permaslug),
-        'footer' => __('Footer Navigation', $permaslug)
-    ));
+  register_nav_menus(array(
+      'primary' => __('Primary Menu', permaslug()),
+      'floating' => __('Floating Menu', permaslug()),
+      'footer' => __('Footer Navigation', permaslug())
+  ));
 }
 add_action('after_setup_theme', 'portal_nav_menus');
 
@@ -197,9 +204,9 @@ function portal_register_required_plugins() {
 function portal_sidebar() {
     register_sidebar(
         array (
-            'name' => __( 'Custom', $permaslug ),
+            'name' => __( 'Custom', permaslug() ),
             'id' => 'sidebar',
-            'description' => __( 'Theme Custom Sidebar', $permaslug ),
+            'description' => __( 'Theme Custom Sidebar', permaslug() ),
             'before_widget' => '<div class="widget-content">',
             'after_widget' => "</div>",
             'before_title' => '<h3 class="widget-title">',

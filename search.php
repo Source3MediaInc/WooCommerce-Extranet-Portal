@@ -20,7 +20,7 @@ get_header();
 
 							<h1 class="page-title"><?php printf(
 							/* translators:*/
-							 esc_html__( 'Search Results for: %s', $permaslug ),
+							 esc_html__( 'Search Results for: %s', permaslug() ),
 								'<span>' . get_search_query() . '</span>' ); ?></h1>
 
 					</header><!-- .page-header -->

@@ -24,7 +24,7 @@ if ( $upsells ) : ?>
 
 	<section class="up-sells upsells products">
 
-		<h2><?php esc_html_e( 'You may also like&hellip;', $permaslug ) ?></h2>
+		<h2><?php esc_html_e( 'You may also like&hellip;', permaslug() ) ?></h2>
 
 		<?php woocommerce_product_loop_start(); ?>
 

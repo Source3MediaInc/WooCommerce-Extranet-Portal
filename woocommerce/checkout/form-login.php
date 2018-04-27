@@ -24,13 +24,13 @@ if ( is_user_logged_in() || 'no' === get_option( 'woocommerce_enable_checkout_lo
 	return;
 }
 
-$info_message  = apply_filters( 'woocommerce_checkout_login_message', __( 'Returning customer?', $permaslug ) );
-$info_message .= ' <a href="#" class="showlogin">' . __( 'Click here to login', $permaslug ) . '</a>';
+$info_message  = apply_filters( 'woocommerce_checkout_login_message', __( 'Returning customer?', permaslug() ) );
+$info_message .= ' <a href="#" class="showlogin">' . __( 'Click here to login', permaslug() ) . '</a>';
 wc_print_notice( $info_message, 'notice' );
 
 woocommerce_login_form(
 	array(
-		'message'  => __( 'If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing &amp; Shipping section.', $permaslug ),
+		'message'  => __( 'If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing &amp; Shipping section.', permaslug() ),
 		'redirect' => wc_get_page_permalink( 'checkout' ),
 		'hidden'   => true,
 	)

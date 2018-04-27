@@ -25,7 +25,7 @@ if ( ! wc_coupons_enabled() ) {
 }
 
 if ( empty( WC()->cart->applied_coupons ) ) {
-	$info_message = apply_filters( 'woocommerce_checkout_coupon_message', __( 'Have a coupon?', $permaslug ) . ' <a href="#" class="showcoupon">' . __( 'Click here to enter your code', $permaslug ) . '</a>' );
+	$info_message = apply_filters( 'woocommerce_checkout_coupon_message', __( 'Have a coupon?', permaslug() ) . ' <a href="#" class="showcoupon">' . __( 'Click here to enter your code', permaslug() ) . '</a>' );
 	wc_print_notice( $info_message, 'notice' );
 }
 ?>
@@ -33,11 +33,11 @@ if ( empty( WC()->cart->applied_coupons ) ) {
 <form class="checkout_coupon" method="post" style="display:none">
 
 	<p class="form-row form-row-first">
-		<input type="text" name="coupon_code" class="input-text" placeholder="<?php esc_attr_e( 'Coupon code', $permaslug ); ?>" id="coupon_code" value="" />
+		<input type="text" name="coupon_code" class="input-text" placeholder="<?php esc_attr_e( 'Coupon code', permaslug() ); ?>" id="coupon_code" value="" />
 	</p>
 
 	<p class="form-row form-row-last">
-		<button type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', $permaslug ); ?>"><?php esc_html_e( 'Apply coupon', $permaslug ); ?></button>
+		<button type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', permaslug() ); ?>"><?php esc_html_e( 'Apply coupon', permaslug() ); ?></button>
 	</p>
 
 	<div class="clear"></div>

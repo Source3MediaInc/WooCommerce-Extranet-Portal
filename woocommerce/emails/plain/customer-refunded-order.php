@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 echo "= " . $email_heading . " =\n\n";
 
-echo sprintf( __( "Hi there. Your order on %s has been refunded. Your order details are shown below for your reference:"$permaslug ), get_option( 'blogname' ) ) . "\n\n";
+echo sprintf( __( "Hi there. Your order on %s has been refunded. Your order details are shown below for your reference:"permaslug() ), get_option( 'blogname' ) ) . "\n\n";
 
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 

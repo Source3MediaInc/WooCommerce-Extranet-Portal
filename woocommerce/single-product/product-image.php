@@ -41,7 +41,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 			$html  = pt_get_gallery_image_html( $post_thumbnail_id, true );
 		} else {
 			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-			$html .= sprintf( '<img style="max-width: 440px;width: 100%;height: auto;" src="%s" alt="%s" class="wp-post-image img-responsive" />', esc_url( wc_placeholder_img_src() ), esc_html__( 'Awaiting product image', $permaslug ) );
+			$html .= sprintf( '<img style="max-width: 440px;width: 100%;height: auto;" src="%s" alt="%s" class="wp-post-image img-responsive" />', esc_url( wc_placeholder_img_src() ), esc_html__( 'Awaiting product image', permaslug() ) );
 			$html .= '</div>';
 		}
 

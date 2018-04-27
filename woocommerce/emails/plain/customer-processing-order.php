@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 echo "= " . $email_heading . " =\n\n";
 
-echo __( "Your order has been received and is now being processed. Your order details are shown below for your reference:"$permaslug ) . "\n\n";
+echo __( "Your order has been received and is now being processed. Your order details are shown below for your reference:"permaslug() ) . "\n\n";
 
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 

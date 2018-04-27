@@ -26,7 +26,7 @@ if ( $order->has_status( 'pending' ) ) {
 
 	echo sprintf(
 		/* translators: %1s item is the name of the site, %2s is a html link */
-		esc_html__( 'An order has been created for you on %1$s. %2$s, $permaslug ),
+		esc_html__( 'An order has been created for you on %1$s. %2$s, permaslug() ),
 		esc_html( get_bloginfo( 'name', 'display' ) ),
 		esc_url( $order->get_checkout_payment_url() )
 	) . "\n\n";

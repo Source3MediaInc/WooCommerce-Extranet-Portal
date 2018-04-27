@@ -5,7 +5,7 @@ if ( ! is_active_sidebar( 'sidebar-product' ) ) {
 }
 ?>
 
-<div class="row" role="complementary" aria-label="<?php esc_attr_e( 'Product Sidebar', $permaslug ); ?>">
+<div class="row" role="complementary" aria-label="<?php esc_attr_e( 'Product Sidebar', permaslug() ); ?>">
   <ul>
     <li>
       Item

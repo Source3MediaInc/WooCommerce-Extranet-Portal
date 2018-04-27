@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 echo "= " . $email_heading . " =\n\n";
 
-echo __( "Hello, a note has just been added to your order:"$permaslug ) . "\n\n";
+echo __( "Hello, a note has just been added to your order:"permaslug() ) . "\n\n";
 
 echo "----------\n\n";
 
@@ -30,7 +30,7 @@ echo wptexturize( $customer_note ) . "\n\n";
 
 echo "----------\n\n";
 
-echo __( "For your reference, your order details are shown below."$permaslug ) . "\n\n";
+echo __( "For your reference, your order details are shown below."permaslug() ) . "\n\n";
 
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 

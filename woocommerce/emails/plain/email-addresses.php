@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-echo "\n" . strtoupper( __( 'Billing address, $permaslug ) ) . "\n\n";
+echo "\n" . strtoupper( __( 'Billing address, permaslug() ) ) . "\n\n";
 echo preg_replace( '#<br\s*/?>#i', "\n", $order->get_formatted_billing_address() ) . "\n";
 
 if ( $order->get_billing_phone() ) {
@@ -32,6 +32,6 @@ if ( $order->get_billing_email() ) {
 }
 
 if ( ! wc_ship_to_billing_address_only() && $order->needs_shipping_address() && ( $shipping = $order->get_formatted_shipping_address() ) ) {
-	echo "\n" . strtoupper( __( 'Shipping address, $permaslug ) ) . "\n\n";
+	echo "\n" . strtoupper( __( 'Shipping address, permaslug() ) ) . "\n\n";
 	echo preg_replace( '#<br\s*/?>#i', "\n", $shipping ) . "\n";
 }

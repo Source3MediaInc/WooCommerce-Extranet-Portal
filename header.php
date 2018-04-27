@@ -21,7 +21,7 @@
         <?php global_menu('primary','navbar-nav mr-auto'); ?>
         <ul class="navbar-nav ml-auto">
           <li>
-            <?php portal_cart_link('https://testing.s3morder.com/cart'); ?>
+            <?php portal_cart_link(get_site_url() . '/cart'); ?>
           </li>
         </ul>
       </div>

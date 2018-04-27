@@ -38,7 +38,7 @@ function product_sidebar(){
 
 function portal_cart_link($url) {
 	?>
-		<a class="cart-contents" href="<?php echo $url; ?>" title="<?php esc_attr_e( 'View your shopping cart', $permaslug ); ?>">
+		<a class="cart-contents" href="<?php echo $url; ?>" title="<?php esc_attr_e( 'View your shopping cart', permaslug() ); ?>">
 			<span class="cart-contents-count"><?php echo WC()->cart->get_cart_contents_count();?></span>
 		</a>
 	<?php

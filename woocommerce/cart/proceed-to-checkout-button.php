@@ -24,5 +24,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'checkout' ) ) ) ;?>" class="btn btn-primary btn-lg btn-block">
-	<?php echo __( 'Proceed to Checkout', $permaslug ); ?>
+	<?php echo __( 'Proceed to Checkout', permaslug() ); ?>
 </a>

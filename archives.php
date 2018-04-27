@@ -44,7 +44,7 @@ get_header(); ?>
 			 <?php wp_list_categories(); ?>
 		</ul>
 
-	<?php 	edit_post_link( __( 'Edit', $permaslug ), '<span class="edit-link">', '</span>' );  ?>
+	<?php 	edit_post_link( __( 'Edit', permaslug() ), '<span class="edit-link">', '</span>' );  ?>
 
 	</div><!-- .entry-content -->
 </article><!-- #post-## -->
