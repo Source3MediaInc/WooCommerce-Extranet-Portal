@@ -1,6 +1,6 @@
 <?php
 
-
+ADD_ACTION('init','permaslug');
 function permaslug(){
   $permaslug = "portal";
 }
@@ -246,5 +246,6 @@ function global_menu($location,$class){
     'walker'          => new WP_Bootstrap_Navwalker(),
   ) );
 }
+add_filter( 'menu-init', 'global_menu' );
 
 ?>

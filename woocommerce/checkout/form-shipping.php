@@ -35,10 +35,52 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php do_action('woocommerce_before_checkout_shipping_form', $checkout ); ?>
 
 			<div class="woocommerce-shipping-fields__field-wrapper">
-				<?php
-					$fields = $checkout->get_checkout_fields( 'shipping' );
+				<label>Pick a rep from the list or enter information below</label>
+				<select id="wooaddresslist" name="wooaddresslist" class="form-control form-control-sm">
+					<option>Please select an option</option>
+					<?php
+						$posts = array();
+						$args = array('post_type'=>'addressbook');
+						$query = New WP_query($args);
 
+						if($query->have_posts()):while($query->have_posts()):$query->the_post();
+
+							$temp = array();
+							$temp['id'] = get_the_id();
+							$temp['fname'] = get_field('fname');
+							$temp['lname'] = get_field('lname');
+							$temp['company'] = get_field('company');
+							$temp['addr1'] = get_field('address_line_1');
+							$temp['addr2'] = get_field('address_line_2');
+							$temp['city'] = get_field('city');
+							$temp['state'] = get_field('state');
+							$temp['zip'] = get_field('zip');
+							$posts = $temp;
+
+							$id 			=	$posts['id'];
+							$fname 		= $posts['fname'];
+							$lname 		= $posts['lname'];
+							$company 	= $posts['company'];
+							$addr1 		= $posts['addr1'];
+							$addr2 		= $posts['addr2'];
+							$city 		= $posts['city'];
+							$state 		= $posts['state'];
+							$zip 			= $posts['zip'];
+
+							if(!empty($posts)){
+								foreach($posts as $post){?>
+									<option value="<?php echo $id;?>"><span id="<?php echo $id . 'fname';?>"><?php echo $fname;?></span></option>
+								<?php }
+							}
+						endwhile;endif;wp_reset_postdata();
+					?>
+				</select>
+
+					<?php
+					$fields = $checkout->get_checkout_fields( 'shipping' );
+					add_addressbook_checkout_field( $fields );
 					foreach ( $fields as $key => $field ) {
+
 						if ( isset( $field['country_field'], $fields[ $field['country_field'] ] ) ) {
 							$field['country'] = $checkout->get_value( $field['country_field'] );
 						}
