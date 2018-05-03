@@ -475,28 +475,6 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'button
       'prority' => 0,
   ) ) );
 
-  $wp_customize->add_setting('cd_call_to_attention_header', array(
-    'default' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    'transport'=>'postMessage',
-  ));
-  $wp_customize->add_control('cd_call_to_attention_header', array(
-    'label'   =>    'Call To Attention Header',
-    'section' =>    'cd_call_to_attention',
-    'settings'=>    'cd_call_to_attention_header',
-    'type'    => 'text'
-  ));
-
-  $wp_customize->add_setting('cd_call_to_attention_body', array(
-    'default' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis eu elit iaculis blandit. Quisque ligula tortor, lobortis ac ex in, malesuada eleifend ligula. Proin et mi at nulla viverra',
-    'transport'=>'postMessage',
-  ));
-  $wp_customize->add_control('cd_call_to_attention_body', array(
-    'label'   =>    'Call To Attention Header',
-    'section' =>    'cd_call_to_attention',
-    'settings'=>    'cd_call_to_attention_body',
-    'type'    => 'text'
-  ));
-
   $wp_customize->add_setting('cd_call_to_action_background', array(
       'default' => '#fff',
       'transport' => 'refresh'
@@ -574,9 +552,7 @@ h6 { font-size: <?php
    p,span,div,i { font-size: <?php
     echo get_theme_mod('regular-font-sizer', '14');
 ?>px; }
-   .pt-hero h1{border-color: <?php
-    echo get_theme_mod('border_color', '#000');
-?>;}
+
    .navbar{background-color: <?php
     echo get_theme_mod('navbar_color', '#000');
 ?>;}
@@ -593,12 +569,7 @@ h6 { font-size: <?php
 body{background-image: url('<?php
  echo get_theme_mod('background-image', '');
 ?>')!important; background-size: cover;}
-.pt-hero{ text-align:<?php
- echo get_theme_mod('cd_text_align', 'left')?>!important;}
 
-.pt-hero{ padding:<?php
- echo get_theme_mod('vertical_padding', '5') .'% ' . get_theme_mod('horizontal_padding', '5');
-?>% !important;}
 
 .btn-custom{ background-color: <?php
  echo get_theme_mod('button_background_color', '#ff3d3d');
@@ -613,12 +584,7 @@ body{background-image: url('<?php
 .btn-custom-border{ color: <?php
  echo get_theme_mod('button_two_text_color', '#fff');
 ?>!important;}
-.pt-cta{ background-color: <?php
- echo get_theme_mod('cd_call_to_action_background', '#fff');
-?>!important;}
-.pt-cta h2,.pt-cta p{color: <?php
- echo get_theme_mod('cd_call_to_action_color', '#fff');
-?>!important;}
+
 
  </style>
 <?php

@@ -24,61 +24,90 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="woocommerce-shipping-fields">
 	<?php if ( true === WC()->cart->needs_shipping_address() ) : ?>
 
-		<h3 id="ship-to-different-address">
-			<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-				<input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" <?php checked( apply_filters( 'woocommerce_ship_to_different_address_checked', 'shipping' === get_option( 'woocommerce_ship_to_destination' ) ? 1 : 0 ), 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" /> <span><?php _e( 'Ship to a different address?', permaslug() ); ?></span>
-			</label>
-		</h3>
-
 		<div class="shipping_address">
 
 			<?php do_action('woocommerce_before_checkout_shipping_form', $checkout ); ?>
 
 			<div class="woocommerce-shipping-fields__field-wrapper">
+				<h3>Shipping details</h3>
 				<label>Pick a rep from the list or enter information below</label>
-				<select id="wooaddresslist" name="wooaddresslist" class="form-control form-control-sm">
-					<option>Please select an option</option>
-					<?php
-						$posts = array();
-						$args = array('post_type'=>'addressbook');
-						$query = New WP_query($args);
+				<select data-live-search="true"  id="wooaddresslist" name="wooaddresslist" class="form-control form-control-sm">
+				<option>Please select an option</option>
+				    <?php
+								$entries = array();
+				        $args = ['post_type'=>'addressbook'];
+				        $address_book_query = New WP_query($args);
+				        if($address_book_query->have_posts()) : while($address_book_query->have_posts()) : $address_book_query->the_post();
 
-						if($query->have_posts()):while($query->have_posts()):$query->the_post();
+				                $entries['id'] = get_the_id();
+				                $entries['fname'] = get_field('fname');
+				                $entries['lname'] = get_field('lname');
+				                $entries['custid'] = get_field('customer_id');
+				                $entries['company'] = get_field('company');
+				                $entries['addr1'] = get_field('address_line_1');
+				                $entries['addr2'] = get_field('address_line_2');
+				                $entries['city'] = get_field('city');
+				                $entries['state'] = get_field('state');
+												$entries['zip'] = get_field('zip');
 
-							$temp = array();
-							$temp['id'] = get_the_id();
-							$temp['fname'] = get_field('fname');
-							$temp['lname'] = get_field('lname');
-							$temp['company'] = get_field('company');
-							$temp['addr1'] = get_field('address_line_1');
-							$temp['addr2'] = get_field('address_line_2');
-							$temp['city'] = get_field('city');
-							$temp['state'] = get_field('state');
-							$temp['zip'] = get_field('zip');
-							$posts = $temp;
+												$fieldsarray = json_encode($entries);
 
-							$id 			=	$posts['id'];
-							$fname 		= $posts['fname'];
-							$lname 		= $posts['lname'];
-							$company 	= $posts['company'];
-							$addr1 		= $posts['addr1'];
-							$addr2 		= $posts['addr2'];
-							$city 		= $posts['city'];
-							$state 		= $posts['state'];
-							$zip 			= $posts['zip'];
-
-							if(!empty($posts)){
-								foreach($posts as $post){?>
-									<option value="<?php echo $id;?>"><span id="<?php echo $id . 'fname';?>"><?php echo $fname;?></span></option>
-								<?php }
-							}
-						endwhile;endif;wp_reset_postdata();
-					?>
+				    ?>
+				        <option data-tokens="<?php echo $entries['id'];?>" value="<?php echo $entries['id'];?>"><?php echo $entries['company'];?> <?php echo $entries['custid'];?> <?php echo $entries['lname'];?>, <?php echo $entries['fname'];?>, <?php echo $entries['addr1'];?></option>
+				    <?php
+				        endwhile;
+				        endif;
+				        wp_reset_query();
+				    ?>
 				</select>
+<?php if(count($entries) > 0) { ?>
+				<script>
+					function populateFields() {
+						alert('Gathering representatives...')
+						$.ajax({
+							type: "POST",
+							url: "form-shipping.php",
+							data:
+								{<?php $i=0; foreach($entries as $entry) { extract($entries); ?>
+									"id": <?php echo $id;?>,
+									"fname": <?php echo $fname;?>,
+									"lname": <?php echo $lname;?>,
+									"custid": <?php echo $custid;?>,
+									"company": <?php echo $company;?>,
+									"addr1": <?php echo $addr1;?>,
+									"addr2": <?php echo $addr2;?>,
+									"city": <?php echo $city;?>,
+									"state": <?php echo $state;?>,
+									"zip": <?php echo $zip;?>,
+								} ,
+								<?php $i++; } ?>
 
-					<?php
+							dataType: 'text';
+							success function (){
+
+							}
+						});
+						//if option value is equal to $ID, echo fields that match $ID
+
+						var select = document.getElementById('wooaddresslist');
+
+						var shpFName = document.getElementById('shipping_first_name');
+						var shpLName = document.getElementById('shipping_last_name');
+						var shpCompany = document.getElementById('shipping_company');
+						var shpCountry = document.getElementById('shipping_country');
+						var shpADDR1 = document.getElementById('shipping_address_1');
+						var shpADDR2 = document.getElementById('shipping_address_2');
+						var shpCity = document.getElementById('shipping_city');
+						var shpState = document.getElementById('shipping_state');
+						var shpZIP = document.getElementById('shipping_postcode');
+						if(select.value = "<?php echo $entries['id'];?>" ){
+							shpFName.innerHTML('<?php echo $entries['fname'];?>');
+							shpLName.innerHTML('<?php echo $entries['lname'];?>');
+						}
+					}
+				</script>
+<?php }
 					$fields = $checkout->get_checkout_fields( 'shipping' );
-					add_addressbook_checkout_field( $fields );
 					foreach ( $fields as $key => $field ) {
 
 						if ( isset( $field['country_field'], $fields[ $field['country_field'] ] ) ) {

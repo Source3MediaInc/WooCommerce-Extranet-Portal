@@ -274,3 +274,12 @@ p.price {
   font-family: Arial, Helvetica, sans-serif;
   vertical-align: super;
 }
+.cart-contents-counter{
+  color: #fff;
+  background-color: #0da1ff;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 1px 6px;
+  line-height: 1;
+  font-family: Arial, Helvetica, sans-serif;
+}

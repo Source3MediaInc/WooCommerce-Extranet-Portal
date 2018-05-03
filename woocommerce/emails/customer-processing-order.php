@@ -27,6 +27,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <p><?php _e( "Your order has been received and is now being processed. Your order details are shown below for your reference:", permaslug() ); ?></p>
 
+<p>If you have any issues with your order, please email Jacquie at <a href="mailto:jcowgill@source3media.com">jcowgill@source3media.com</a> or call Jacquie at Source3Media at <a href="tel:330-467-9003">330.467.9003 ext.144</a></p>
 <?php
 
 /**

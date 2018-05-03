@@ -10,10 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $my_orders_columns = apply_filters( 'woocommerce_my_account_my_orders_columns', array(
-	'order-number'  => __( 'Order, permaslug() ),
-	'order-date'    => __( 'Date, permaslug() ),
-	'order-status'  => __( 'Status, permaslug() ),
-	'order-total'   => __( 'Total, permaslug() ),
+	'order-number'  => __( 'Order', permaslug() ),
+	'order-date'    => __( 'Date', permaslug() ),
+	'order-status'  => __( 'Status', permaslug() ),
+	'order-total'   => __( 'Total', permaslug() ),
 	'order-actions' => '&nbsp;',
 ) );
 
@@ -27,7 +27,7 @@ $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_q
 
 if ( $customer_orders ) : ?>
 
-	<h2><?php echo apply_filters( 'woocommerce_my_account_my_orders_title', __( 'Recent orders, permaslug() ) ); ?></h2>
+	<h2><?php echo apply_filters( 'woocommerce_my_account_my_orders_title', __( 'Recent orders', permaslug() ) ); ?></h2>
 
 	<table class="shop_table shop_table_responsive my_account_orders">
 
@@ -52,7 +52,7 @@ if ( $customer_orders ) : ?>
 
 							<?php elseif ( 'order-number' === $column_id ) : ?>
 								<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
-									<?php echo _x( '#', 'hash before order number, permaslug() ) . $order->get_order_number(); ?>
+									<?php echo _x( '#', 'hash before order number', permaslug() ) . $order->get_order_number(); ?>
 								</a>
 
 							<?php elseif ( 'order-date' === $column_id ) : ?>
@@ -70,7 +70,7 @@ if ( $customer_orders ) : ?>
 							<?php elseif ( 'order-actions' === $column_id ) : ?>
 								<?php
 								$actions = wc_get_account_orders_actions( $order );
-								
+
 								if ( ! empty( $actions ) ) {
 									foreach ( $actions as $key => $action ) {
 										echo '<a href="' . esc_url( $action['url'] ) . '" class="button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';

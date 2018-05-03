@@ -19,11 +19,8 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <?php global_menu('primary','navbar-nav mr-auto'); ?>
-        <ul class="navbar-nav ml-auto">
-          <li>
-            <?php portal_cart_link(get_site_url() . '/cart'); ?>
-          </li>
-        </ul>
+        <a href="/cart/" title="View Shopping Cart Contents"><i class="fas fa-shopping-bag cart-icon"></i><span class="cart-contents-counter"><?php echo WC()->cart->get_cart_contents_count();?></span></a>
+
       </div>
     </div>
   </nav>

@@ -35,7 +35,7 @@ do_action( 'woocommerce_before_shipping_calculator' ); ?>
 	<section class="shipping-calculator-form" style="display:none;">
 
 		<p class="form-row form-row-wide" id="calc_shipping_country_field">
-			<select name="calc_shipping_country" id="calc_shipping_country" class="country_to_state country_select" rel="calc_shipping_state">
+			<select name="calc_shipping_country" id="calc_shipping_country" class="form-control country_to_state country_select" rel="calc_shipping_state">
 				<option value=""><?php esc_html_e( 'Select a country&hellip;', permaslug() ); ?></option>
 				<?php
 				foreach ( WC()->countries->get_shipping_countries() as $key => $value ) {

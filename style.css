@@ -145,3 +145,48 @@ Do not edit, redistribute or otherwise user/change this theme without written co
   padding: 0 15px;
   margin: 0 auto;
 }
+
+.error-page{
+  background-color: #1a53ff;
+  color: white;
+  text-align: center;
+  padding: 11% 25%;
+  height: 100vh;
+  font-size: 4em;
+}
+.error-page *{
+  color: white;
+}
+.error-page h1{
+  font-size: 4em;
+}
+.error-page h2{
+  font-size: .67em;
+}
+.error-page h5{
+  font-size: .42em;
+}
+.woocommerce-loop-product__title{
+  color: black!important
+}
+
+.country_to_state,
+.state_select{
+  display: block;
+width: 100%;
+padding: .375rem .75rem;
+font-size: 1rem;
+line-height: 1.5;
+color: #495057;
+background-color: #fff;
+background-clip: padding-box;
+border: 1px solid #ced4da;
+border-radius: .25rem;
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.cart-icon{
+  color: #0da1ff;
+  margin-right: 5px;
+  font-size: 1.2em;
+}

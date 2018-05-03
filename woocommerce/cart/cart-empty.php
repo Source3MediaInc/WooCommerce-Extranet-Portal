@@ -20,17 +20,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-wc_print_notices();
+// wc_print_notices();
 
 /**
  * @hooked wc_empty_cart_message - 10
  */
-do_action( 'woocommerce_cart_is_empty' );
-
-if ( wc_get_page_id( ) > 0 ) : ?>
-	<p class="return-to-shop">
-		<a class="btn btn-outline-primary" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( ) ) ); ?>">
-			<?php _e( 'Return To Shop', permaslug() ) ?>
+ ?>
+<div class="text-center"><?php do_action( 'woocommerce_cart_is_empty' ); ?></div>
+<?php
+//if ( wc_get_page_id( ) > 0 ) : ?>
+	<!-- <p class="return-to-shop">
+		<a class="btn btn-outline-primary" href="<?php //echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( ) ) ); ?>">
+			<?php //_e( 'Return To Shop', permaslug() ) ?>
 		</a>
-	</p>
-<?php endif; ?>
+	</p> -->
+<?php //endif; ?>
