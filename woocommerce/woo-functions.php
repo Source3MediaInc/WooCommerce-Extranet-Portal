@@ -60,4 +60,27 @@ function product_query() {
 	        wp_reset_postdata();
 }
 
+function sp_custom_low_stock_notification_product_30( $order ) {
+	/**
+	 * Set a different treshold per product ID
+	 * The Product ID is set in the 'key' and the stock threshold the 'value'.
+	 */
+	$stock_thresholds_products = array(
+		152 => 500,
+		149 => 500
+	);
+	foreach ( $order->get_items() as $item ) {
+		if ( $item->is_type( 'line_item' ) && ( $product = $item->get_product() ) && $product->managing_stock() ) {
+			$new_stock = $item->get_quantity();
+			// Loop through stock threshold products
+			foreach ( $stock_thresholds_products as $product_id => $threshold ) {
+				if ( $product->get_id() == $product_id && $new_stock < $threshold ) {
+					do_action( 'woocommerce_low_stock', $product );
+				}
+			}
+		}
+	}
+}
+add_action( 'woocommerce_reduce_order_stock', 'sp_custom_low_stock_notification_product_30', 10, 3 );
+
 ?>

@@ -11,17 +11,19 @@ function portal_theme_styles()
     wp_enqueue_style('fontawesome', 'https://use.fontawesome.com/releases/v5.0.10/css/all.css', array(), '5.0.10', 'all');
     wp_enqueue_style('style', get_stylesheet_uri(), array(), '0.00.00.68', 'all');
     wp_enqueue_style('woocommerce', get_template_directory_uri() . '/woocommerce.css', array(), '0.00.00.33', 'all');
+    wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', array(), '0.00.00.33', 'all');
 }
 add_action('wp_enqueue_scripts', 'portal_theme_styles');
 function portal_theme_scripts()
 {
-		wp_deregister_script('jquery');
+		//wp_deregister_script('jquery');
     wp_deregister_script('wc-checkout');
-    wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), null, false);
+    //wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), null, false);
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js', array('jquery'), '4.0.0', false);
     wp_deregister_script( 'wc-single-product' );
     wp_enqueue_script('wc-single-product', get_template_directory_uri() . '/lib/js/single-product.js', array('jquery'), '0.0.3', false);
     wp_enqueue_script('wc-checkout-min', get_template_directory_uri() . '/lib/js/checkout.min.js', array('jquery'), '0.0.3', false);
+    wp_enqueue_script('wc-checkout-min', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array('jquery'), '0.0.3', false);
 
 }
 add_action('wp_enqueue_scripts', 'portal_theme_scripts');

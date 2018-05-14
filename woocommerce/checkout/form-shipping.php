@@ -15,9 +15,36 @@
  * @package WooCommerce/Templates
  * @version 3.0.9
  */
-
+?>
+<script>
+jQuery(document).ready(function() {
+    jQuery('#wooaddresslist').select2();
+});
+</script>
+<?php
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
+}
+
+add_filter('woocommerce_states','custom_province', 10, 1);
+
+function custom_province($states){
+		$states = array(
+				'AB' => __( 'Alberta', permaslug() ),
+				'BC' => __( 'British Columbia', permaslug() ),
+				'MB' => __( 'Manitoba', permaslug() ),
+				'NB' => __( 'New Brunswick', permaslug() ),
+				'NL' => __( 'Newfoundland and Labrador', permaslug() ),
+				'NT' => __( 'Northwest Territories', permaslug() ),
+				'NS' => __( 'Nova Scotia', permaslug() ),
+				'NU' => __( 'Nunavut', permaslug() ),
+				'ON' => __( 'Ontario', permaslug() ),
+				'PE' => __( 'Prince Edward Island', permaslug() ),
+				'QC' => __( 'Quebec', permaslug() ),
+				'SK' => __( 'Saskatchewan', permaslug() ),
+				'YT' => __( 'Yukon', permaslug() )
+		);
+		return $states;
 }
 
 ?>
@@ -29,13 +56,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php do_action('woocommerce_before_checkout_shipping_form', $checkout ); ?>
 
 			<div class="woocommerce-shipping-fields__field-wrapper">
-				<h3>Shipping details</h3>
-				<label>Pick a rep from the list or enter information below</label>
-				<select data-live-search="true"  id="wooaddresslist" name="wooaddresslist" class="form-control form-control-sm">
+
+				<h3 id="ship-to-different-address">Shipping details
+					<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox" style="float: right">
+						<input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" <?php checked( apply_filters( 'woocommerce_ship_to_different_address_checked', 'shipping' === get_option( 'woocommerce_ship_to_destination' ) ? 1 : 0 ), 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" /> <span><?php _e( 'Ship to a different address?', permaslug() ); ?></span>
+					</label>
+				</h3>
+
+
+				<label style="width: 100%;">Pick a rep from the list or enter information below<span id="clearfields" name="clearfields" style="float: right;" class="btn btn-info">Clear Fields</span></label>
+				<select id="wooaddresslist" name="wooaddresslist" class="form-control form-control-sm">
 				<option>Please select an option</option>
 				    <?php
 								$entries = array();
-				        $args = ['post_type'=>'addressbook'];
+				        $args = ['post_type'=>'addressbook', 'orderby'=>'title','posts_per_page'=>1000000];
 				        $address_book_query = New WP_query($args);
 				        if($address_book_query->have_posts()) : while($address_book_query->have_posts()) : $address_book_query->the_post();
 
@@ -43,51 +77,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 				                $entries['fname'] = get_field('fname');
 				                $entries['lname'] = get_field('lname');
 				                $entries['custid'] = get_field('customer_id');
-				                $entries['company'] = get_field('company');
+												$entries['company'] = get_field('company');
+				                $entries['country'] = get_field('country');
 				                $entries['addr1'] = get_field('address_line_1');
 				                $entries['addr2'] = get_field('address_line_2');
 				                $entries['city'] = get_field('city');
-				                $entries['state'] = get_field('state');
+												$entries['state'] = get_field('state');
+				                $entries['province'] = get_field('province');
 												$entries['zip'] = get_field('zip');
 
 												$fieldsarray = json_encode($entries);
 
 				    ?>
-				        <option data-tokens="<?php echo $entries['id'];?>" value="<?php echo $entries['id'];?>"><?php echo $entries['company'];?> <?php echo $entries['custid'];?> <?php echo $entries['lname'];?>, <?php echo $entries['fname'];?>, <?php echo $entries['addr1'];?></option>
+				        <option value="<?php echo $entries['id'];?>">#<?php echo $entries['custid'];?>, <?php echo $entries['company'];?>, <?php echo $entries['lname'];?>, <?php echo $entries['fname'];?>, <?php echo $entries['addr1'];?></option>
 				    <?php
 				        endwhile;
 				        endif;
 				        wp_reset_query();
 				    ?>
 				</select>
-<?php if(count($entries) > 0) { ?>
+
+
+
 				<script>
-					function populateFields() {
-						alert('Gathering representatives...')
-						$.ajax({
-							type: "POST",
-							url: "form-shipping.php",
-							data:
-								{<?php $i=0; foreach($entries as $entry) { extract($entries); ?>
-									"id": <?php echo $id;?>,
-									"fname": <?php echo $fname;?>,
-									"lname": <?php echo $lname;?>,
-									"custid": <?php echo $custid;?>,
-									"company": <?php echo $company;?>,
-									"addr1": <?php echo $addr1;?>,
-									"addr2": <?php echo $addr2;?>,
-									"city": <?php echo $city;?>,
-									"state": <?php echo $state;?>,
-									"zip": <?php echo $zip;?>,
-								} ,
-								<?php $i++; } ?>
-
-							dataType: 'text';
-							success function (){
-
-							}
-						});
-						//if option value is equal to $ID, echo fields that match $ID
+					jQuery(document).ready(function(){
+						//if option value is equal to ID, echo fields that match ID
 
 						var select = document.getElementById('wooaddresslist');
 
@@ -100,13 +114,129 @@ if ( ! defined( 'ABSPATH' ) ) {
 						var shpCity = document.getElementById('shipping_city');
 						var shpState = document.getElementById('shipping_state');
 						var shpZIP = document.getElementById('shipping_postcode');
-						if(select.value = "<?php echo $entries['id'];?>" ){
-							shpFName.innerHTML('<?php echo $entries['fname'];?>');
-							shpLName.innerHTML('<?php echo $entries['lname'];?>');
-						}
-					}
+						jQuery("#wooaddresslist").change(function(){
+							<?php
+							$args = ['post_type'=>'addressbook','posts_per_page'=>1000000];
+							$address_book_query = New WP_query($args);
+							if($address_book_query->have_posts()) : while($address_book_query->have_posts()) : $address_book_query->the_post();
+							$entries['id'] = get_the_id();
+							$entries['fname'] = get_field('fname');
+							$entries['lname'] = get_field('lname');
+							$entries['custid'] = get_field('customer_id');
+							$entries['company'] = get_field('company');
+							$entries['country'] = get_field('country');
+							$entries['addr1'] = get_field('address_line_1');
+							$entries['addr2'] = get_field('address_line_2');
+							$entries['city'] = get_field('city');
+							$entries['state'] = get_field('state');
+							$entries['province'] = get_field('province');
+							$entries['zip'] = get_field('zip');
+							?>
+							if(select.value == "<?php echo $entries['id']; ?>"){
+								jQuery('#shipping_first_name').val('<?php echo $entries['fname'];?>');
+								jQuery('#customer_number').val('<?php echo $entries['custid'];?>');
+								jQuery('#shipping_last_name').val('<?php echo $entries['lname'];?>');
+								jQuery('#shipping_company').val('<?php echo $entries['company'];?>');
+								jQuery('#shipping_address_1').val('<?php echo $entries['addr1'];?>');
+								jQuery('#shipping_address_2').val('<?php echo $entries['addr2'];?>');
+								jQuery('#shipping_country').val('<?php echo $entries['country'];?>');
+								jQuery('#shipping_city').val('<?php echo $entries['city'];?>');
+								jQuery('#shipping_state').val('<?php echo $entries['state'];?>');
+								jQuery('#shipping_postcode').val('<?php echo $entries['zip'];?>');
+							}
+							<?php
+							endwhile;endif;wp_reset_postdata();
+							?>
+						});
+						jQuery('#clearfields').click(function(){
+							jQuery('#shipping_first_name').val(' ');
+							jQuery('#customer_number').val(' ');
+							jQuery('#shipping_last_name').val(' ');
+							jQuery('#shipping_company').val(' ');
+							jQuery('#shipping_address_1').val(' ');
+							jQuery('#shipping_address_2').val(' ');
+							jQuery('#shipping_country').val('');
+							jQuery('#shipping_city').val(' ');
+							jQuery('#shipping_state').val('');
+							jQuery('#shipping_postcode').val(' ');
+						});
+					});
 				</script>
-<?php }
+<?php //}
+				/**
+				 * Add the field to the checkout
+				 **/
+				add_action('woocommerce_before_order_notes', 'my_custom_checkout_field',30);
+
+				function my_custom_checkout_field( $checkout ) {
+					//Creates custom field
+					woocommerce_form_field( 'customer_number', array(
+						'type' 			=> 'text',
+						'key'				=> 'Customer Number',
+						'class' 		=> array('form-row-wide'),
+						'label' 		=> __('Customer Number'),
+						'placeholder' 	=> __('Enter a number'),
+						'required'			=> false,
+						), $checkout->get_value( 'customer_number' ));
+					}
+
+					add_filter("woocommerce_checkout_fields", "order_shipping_fields");
+
+					function order_shipping_fields($fields) {
+
+					$order = array(
+						 "customer_number",
+						 "shipping_first_name",
+						 "shipping_last_name",
+						 "shipping_location_type",
+						 "shipping_address_1",
+						 "shipping_address_2",
+						 "shipping_city",
+						 "shipping_state",
+						 "shipping_postcode",
+						 "shipping_country",
+						 "shipping_email",
+						 "shipping_phone"
+					);
+					foreach ($order as $field) {
+						 $ordered_fields[$field] = $fields["shipping"][$field];
+					}
+
+					$fields["shipping"] = $ordered_fields;
+					unset($fields['order']['order_comments']);
+					return $fields;
+					}
+
+					add_action('woocommerce_checkout_process', 'my_custom_checkout_field_process');
+
+					function my_custom_checkout_field_process() {
+					    // Check if set, if its not set add an error.
+					    if ( ! $_POST['customer_number'] )
+					        wc_add_notice( __( 'Please enter a customer number.' ), 'error' );
+					}
+					//Adds custom field to the order meta
+					add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
+
+					function my_custom_checkout_field_update_order_meta( $order_id ) {
+					    if ( ! empty( $_POST['customer_number'] ) ) {
+					        update_post_meta( $order_id, 'Customer Number', sanitize_text_field( $_POST['customer_number'] ) );
+					    }
+					}
+					//Displays custom field in the order area through the meta data
+					add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
+
+					function my_custom_checkout_field_display_admin_order_meta($order){
+						echo '<p><strong>'.__('Customer Number').':</strong> ' . get_post_meta( $order->id(), '_customer_number', true ) . '</p>';
+					}
+					//Adds the custom field to the email when the customer places their order
+					add_filter('woocommerce_email_order_meta_keys', 'my_custom_order_meta_keys');
+
+					function my_custom_order_meta_keys( $keys ) {
+					     $keys[] = 'Customer Number'; // This will look for a custom field called 'Customer Number' and add it to emails
+					     return $keys;
+					}
+/* .............................................................. DONT REMOVE .............................................................. */
+
 					$fields = $checkout->get_checkout_fields( 'shipping' );
 					foreach ( $fields as $key => $field ) {
 
@@ -115,6 +245,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						}
 						woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
 					}
+/* .............................................................. DONT REMOVE .............................................................. */
 				?>
 			</div>
 
